@@ -1,0 +1,35 @@
+<div class="container">
+  <div nz-row>
+    <div nz-col nzSpan="12">
+      <input nz-input placeholder="To whome..." [(ngModel)]="toUser" />
+    </div>
+  </div>
+  <br>
+  <div nz-row>
+    <div nz-col nzSpan="12">
+      <div class="messages">
+        <div nz-row>
+          <div nz-col nzSpan="24" style="padding-right: 5px;">
+            <div nz-row>
+              <div nz-col nzSpan="6">
+                <strong>Ram Charan:</strong>
+              </div>
+              <div nz-col nzSpan="18">
+                <div>This text is the content of the box.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <br>
+  <div nz-row>
+    <div nz-col nzSpan="10">
+      <input nz-input placeholder="Type..." [(ngModel)]="msg" />
+    </div>
+    <div nz-col nzSpan="2">
+      <button nz-button nzType="primary" nzBlock (click)="sendMessage()" >Send</button>
+    </div>
+  </div>
+</div>

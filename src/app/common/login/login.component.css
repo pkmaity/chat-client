@@ -1,0 +1,9 @@
+.login{
+    border: 1px solid rgba(230, 145, 196, 0.842);
+    padding: 15px;
+    padding-bottom: 0;
+    top: 150px;
+    position: relative;
+    margin-right: 34%;
+    margin-left: 34%;
+}
