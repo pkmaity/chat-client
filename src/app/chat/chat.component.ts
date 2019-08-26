@@ -11,27 +11,40 @@ export class ChatComponent implements OnInit {
   toUser: string;
   fromUser: string;
   msg: any;
+  totBoxLength: number = 18;
+  newChatBox: string[] = [];
+  users: string[];
 
   constructor(private _chatServ: ChatService) {
-    this._chatServ.subject$.subscribe(data => console.log(data));
    }
 
   ngOnInit() {
+    this.users = ['rk', 'sk'];
   }
 
   setUser(){
     this._chatServ.setUser(this.fromUser);
   }
 
-  sendMessage(){
+  sendMessage(newUser: string, newMsg: string){
 
     let data = {
-      toUser: this.toUser,
-      msg: this.msg
+      toUser: newUser,
+      msg: newMsg
     }
 
     this._chatServ.emit('send message', data);
 
+  }
+
+  showChat(user: string ){
+    this.totBoxLength -= 6;
+    this.newChatBox.push(user);
+  }
+
+  removeChatBox(user: string){
+    this.totBoxLength += 6;
+    this.newChatBox.splice( this.newChatBox.findIndex(val => val == user) , 1);
   }
 
 }

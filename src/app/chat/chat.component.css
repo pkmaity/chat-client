@@ -1,10 +1,28 @@
-.container{
+li {
+    list-style-type: none;
+}
+a {
+    text-decoration: none;
+}
+.side-users{
+    float: right;
+    width: 25%;
+    padding: 15px 10px;
+    border: 1px solid rgb(161, 158, 158);
+    min-height: 613px;
+}
+.bottom-chat{
+    bottom: 0px;
+    position: absolute;
+    width: 100%;
+}
+.chat-container{
     padding: 12px;
     height: auto;
-    bottom: 0px;
+    width: 100%;
 }
 .messages{
     border: 1px solid rgb(161, 158, 158);
-    min-height: 430px;
+    min-height: 150px;
     padding: 5px;
 }

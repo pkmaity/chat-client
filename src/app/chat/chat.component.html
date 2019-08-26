@@ -1,35 +1,53 @@
-<div class="container">
-  <div nz-row>
-    <div nz-col nzSpan="12">
-      <input nz-input placeholder="To whome..." [(ngModel)]="toUser" />
-    </div>
+<div class="side-users">
+  <div class="users-list">
+    <ng-container *ngFor="let user of users; let i = index;">
+      <li><a href="javascript: void(0)" (click)="showChat(user)">Ram Charan</a></li>
+    </ng-container>
   </div>
-  <br>
-  <div nz-row>
-    <div nz-col nzSpan="12">
-      <div class="messages">
+</div>
+<div nz-row class="bottom-chat">
+  <div nz-col nzSpan="{{totBoxLength}}"></div>
+  <ng-container *ngFor="let new of newChatBox; index as i;">
+    <div nz-col nzSpan="6">
+      <div class="chat-container">
         <div nz-row>
-          <div nz-col nzSpan="24" style="padding-right: 5px;">
-            <div nz-row>
-              <div nz-col nzSpan="6">
-                <strong>Ram Charan:</strong>
-              </div>
-              <div nz-col nzSpan="18">
-                <div>This text is the content of the box.</div>
+          <div nz-col nzSpan="20">
+            <input nz-input placeholder="To whome..." [(ngModel)]="new" readonly />
+          </div>
+          <div nz-col nzSpan="4">
+              <button nz-button nzType="danger" nzBlock (click)="removeChatBox(new)" style="padding: 1px" >Close</button>
+          </div>
+        </div>
+        <br>
+        <div nz-row>
+          <div nz-col nzSpan="24">
+            <div class="messages">
+              <div nz-row>
+                <div nz-col nzSpan="24" style="padding-right: 5px;">
+                  <div nz-row>
+                    <div nz-col nzSpan="6">
+                      <strong>Raghu Charan:</strong>
+                    </div>
+                    <div nz-col nzSpan="18">
+                      <div>This text is the content of the box.</div>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
         </div>
+        <br>
+        <div nz-row>
+          <div nz-col nzSpan="20">
+            <input nz-input placeholder="Type..." [(ngModel)]="msg" />
+          </div>
+          <div nz-col nzSpan="4">
+            <button nz-button nzType="primary" nzBlock (click)="sendMessage(new)" style="padding: 1px" >Send</button>
+          </div>
+        </div>
       </div>
     </div>
-  </div>
-  <br>
-  <div nz-row>
-    <div nz-col nzSpan="10">
-      <input nz-input placeholder="Type..." [(ngModel)]="msg" />
-    </div>
-    <div nz-col nzSpan="2">
-      <button nz-button nzType="primary" nzBlock (click)="sendMessage()" >Send</button>
-    </div>
-  </div>
+  </ng-container>
+  <div nz-col nzSpan="6"></div>
 </div>

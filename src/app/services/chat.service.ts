@@ -9,12 +9,12 @@ import { environment } from '../../environments/environment'
 })
 export class ChatService {
   
-  subject$ = new Subject();
   socket = io(environment.apiUrl);
   url: string;
 
   constructor() {
     this.socket.on('message', (data) => console.log(data));
+    this.socket.on('offline user', (data) => console.log(data));
   }
 
   /**
