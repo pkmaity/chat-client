@@ -16,13 +16,3 @@ a {
     position: absolute;
     width: 100%;
 }
-.chat-container{
-    padding: 12px;
-    height: auto;
-    width: 100%;
-}
-.messages{
-    border: 1px solid rgb(161, 158, 158);
-    min-height: 150px;
-    padding: 5px;
-}

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import * as io from 'socket.io-client';
-import { Observable, Subject } from 'rxjs';
+import { Observable, Subject, from } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from '../../environments/environment'
 
@@ -10,11 +10,20 @@ import { environment } from '../../environments/environment'
 export class ChatService {
   
   socket = io(environment.apiUrl);
-  url: string;
+
+  chatDetails = new Subject<string>();
+  cahtOutput$ = this.chatDetails.asObservable();
+
+  userDetails = new Subject<string[]>();
+  userDetailsCatch$ = this.userDetails.asObservable();
+  
+  loggedOutUser = new Subject<string>();
+  logoutUserName$ = this.loggedOutUser.asObservable();
 
   constructor() {
-    this.socket.on('message', (data) => console.log(data));
-    this.socket.on('offline user', (data) => console.log(data));
+    this.socket.on('message', (data) => this.chatDetails.next(data));
+    this.socket.on('offline user', (data) => this.loggedOutUser.next(data));
+    this.socket.on('new active user', (data: string[]) => { this.userDetails.next(data) } );
   }
 
   /**
@@ -22,6 +31,7 @@ export class ChatService {
    */
   setUser(user: string){
     console.log(user);
+    localStorage.setItem('user', user);
     this.socket.emit('new user', user);
   }
 
@@ -45,7 +55,7 @@ export class ChatService {
    * @param eventType stands for any kind of event emited by client
    * @param data which user want to send to the other user(s)
    */
-  emit(eventType: string, data: any){
+  emit(eventType: string, data?: any){
 
     this.socket.emit(eventType, data);
 
